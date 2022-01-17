@@ -1,7 +1,9 @@
 from bs4 import BeautifulSoup
 import requests
 
-url = 'https://www.21vek.by/refrigerators/'
+find_items = input('Что ищете?')
+url = f'https://www.21vek.by/search/?sa=&term={find_items}&searchId=BY_CLIENT_1642441348023092/'
+params = {'page': 1}
 n = 1
 
 while True:
