@@ -29,12 +29,16 @@ def main():
             print(f"Цена: {itemPrice}")
             print('')
 
-        pageList = soup.find_all('a', class_='j-load_page cr-paging_link')
-        nextPage = pageList[-1]
-        if nextPage.text != '>':
+        try:
+            pageList = soup.find_all('a', class_='j-load_page cr-paging_link')
+            nextPage = pageList[-1]
+            if nextPage.text != '>':
+                break
+            else:
+                params['page'] += 1
+        except Exception as e:
+            print(e)
             break
-        else:
-            params['page'] += 1
 
 
 if __name__ == "__main__":
