@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
+import json
 
 
 def main():
@@ -7,6 +8,8 @@ def main():
     url = f'https://www.21vek.by/search/?sa=&term={find_items}&searchId=BY_CLIENT_1642441348023092/'
     params = {'page': 1}
     n = 1
+
+    data_dictionary = []
 
     while True:
         res = requests.get(url, params=params)
@@ -28,6 +31,17 @@ def main():
             print(f'Ссылка на товар: {itemLink}')
             print(f"Цена: {itemPrice}")
             print('')
+
+            data = {
+                'itemName' : itemName,
+                'itemLink' : itemLink,
+                'itemPrice' : itemPrice
+            }
+
+            data_dictionary.append(data)
+
+            with open(f"jsonFiles/{find_items}_21vek.json", 'w') as f:
+                json.dump(data_dictionary, f, indent=4)
 
         try:
             pageList = soup.find_all('a', class_='j-load_page cr-paging_link')
