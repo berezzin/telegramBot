@@ -40,8 +40,8 @@ def main():
 
             data_dictionary.append(data)
 
-            with open(f"jsonFiles/{find_items}_21vek.json", 'w') as f:
-                json.dump(data_dictionary, f, indent=4)
+            with open(f"jsonFiles/{find_items}_21vek.json", 'w', encoding='utf-8') as f:
+                json.dump(data_dictionary, f, indent=4, ensure_ascii=False)
 
         try:
             pageList = soup.find_all('a', class_='j-load_page cr-paging_link')
