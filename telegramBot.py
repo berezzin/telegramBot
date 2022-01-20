@@ -32,12 +32,15 @@ def get_surname(message):
 
 def get_age(message):
     global age
-    while age == 0:  # проверяем что возраст изменился
+    if age == 0:  # проверяем что возраст изменился
         try:
             age = int(message.text)  # проверяем, что возраст введен корректно
-        except Exception:
+        except Exception as e:
             bot.send_message(message.from_user.id, 'Цифрами, пожалуйста')
+            bot.register_next_step_handler(message, get_age)
+            return
     bot.send_message(message.from_user.id, 'Тебе ' + str(age) + ' лет, тебя зовут ' + name + ' ' + surname + '?')
+    age = 0
 
 
 bot.polling(none_stop=True, interval=0)
