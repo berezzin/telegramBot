@@ -2,7 +2,7 @@ import telebot
 from myParser import MyParser
 import json
 
-bot = telebot.TeleBot('5087141211:AAGOKkuVmk3bCOewKsNYjAnz3sf6FJiFT3g')
+bot = telebot.TeleBot('TOKEN FROM BOTFATHER')
 
 
 @bot.message_handler(content_types=['text'])
